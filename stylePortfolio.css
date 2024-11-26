@@ -1,0 +1,160 @@
+/* Animații */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes expandLine {
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+
+    100% {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%) rotate(180deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) rotate(180deg);
+    }
+}
+
+/* Stilizare generală */
+.strong {
+    font-weight: 400;
+}
+
+.simulation-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.simulation-container a {
+    position: relative;
+    z-index: 100;
+    color: #1F2232;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.simulation-container a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #BC9EC1;
+}
+
+.detail-title,
+.challenge-title,
+.approach-title,
+.results-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.challenge-details,
+.approach-details,
+.results-details {
+    margin-bottom: 20px;
+}
+
+.challenge-details ul,
+.approach-details ul,
+.results-details ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.challenge-details li,
+.approach-details li,
+.results-details li {
+    margin-bottom: 10px;
+}
+
+/* Stilizare text-content */
+
+
+.text-content-below {
+    align-items: flex-start;
+    right: 30px;
+}
+
+.name-below,
+.name {
+    font-size: 32px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1.5s ease-out forwards;
+    animation-delay: 0.5s;
+    font-weight: 600;
+}
+
+.name-line-below,
+.name-line {
+    width: 0;
+    height: 4px;
+    background-color: #BC9EC1;
+    opacity: 0;
+    animation: expandLine 1s ease-out forwards;
+    animation-delay: 2s;
+}
+
+.title-below,
+.title {
+    width: 100%;
+    font-size: 16px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1.5s ease-out forwards;
+    animation-delay: 3s;
+    font-weight: 300;
+}
+
+
+
+
+
+
+/* Stilizare linkuri și navigație */
+.nav-link,
+.simulation-container a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #333;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active,
+.simulation-container a:hover {
+    color: #BC9EC1;
+    text-decoration: underline;
+}
+
+.nav-link.active::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #BC9EC1;
+}
