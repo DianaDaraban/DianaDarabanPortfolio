@@ -52,6 +52,8 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image", title, description },
   robots: { index: true, follow: true },
+  // Older opt-out read by Samsung Internet and older Android browsers (the viewport colorScheme covers Chrome)
+  other: { "supported-color-schemes": "light only" },
 };
 
 export const viewport: Viewport = {

@@ -1381,17 +1381,17 @@ $card-bg: rgba(255, 255, 255, 0.84);
         display: flex;
         flex-direction: column;
         justify-content: center;
-        gap: 5px;
-        width: 2.9rem;
-        height: 2.9rem;
-        padding: 0 0.7rem;
+        gap: 6.5px;
+        width: 3.75rem;
+        height: 3.75rem;
+        padding: 0 0.9rem;
         border: none;
         background: none;
         cursor: pointer;
 
         span {
             display: block;
-            height: 2px;
+            height: 2.6px;
             border-radius: 2px;
             background: #1f2232;
         }
@@ -1410,7 +1410,7 @@ $card-bg: rgba(255, 255, 255, 0.84);
 
     // Name and role a little above the centre, leaving the lower part for the photo
     .heroText {
-        top: 27svh;
+        top: calc(27svh + 50px);
         left: 1.5rem;
         right: 1.5rem;
     }
@@ -1429,7 +1429,7 @@ $card-bg: rgba(255, 255, 255, 0.84);
 
     // Slightly larger photo, same bottom-left position
     .heroPhoto {
-        --photo-w: min(128vw, 36rem);
+        --photo-w: min(153.6vw, 43.2rem);
     }
 
     // Scroll cue centred and fully above the bottom edge (svh excludes the browser bars)
@@ -1517,7 +1517,10 @@ $card-bg: rgba(255, 255, 255, 0.84);
         background: transparent;
     }
 
+    // Column layout so the CV button can sit at the bottom of the screen
     &[open] {
+        display: flex;
+        flex-direction: column;
         animation: lightboxIn 0.2s ease-out;
     }
 }
@@ -1545,7 +1548,9 @@ $card-bg: rgba(255, 255, 255, 0.84);
 }
 
 .mobileMenuLinks {
-    display: grid;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     gap: 0.25rem;
 
     > a,
@@ -1616,7 +1621,9 @@ $card-bg: rgba(255, 255, 255, 0.84);
 .mobileMenu .mobileMenuLinks > .mobileMenuCv {
     justify-content: center;
     gap: 0.6rem;
-    margin-top: 1.5rem;
+    // Pushed to the bottom of the menu
+    margin-top: auto;
+    flex-shrink: 0;
     border: none;
     border-radius: 999px;
     background: #1f2232;
@@ -1632,4 +1639,45 @@ $card-bg: rgba(255, 255, 255, 0.84);
         stroke-linecap: round;
         stroke-linejoin: round;
     }
+}
+
+// ----- Portfolio category buttons: slide in when the section appears -----
+// Odd buttons come from the left, even ones from the right, one after another.
+// Same reveal state as the project cards (set by PortfolioBrowser), so they never stay hidden.
+
+.portfolioSection[data-reveal="armed"] .categoryButtons li {
+    opacity: 0;
+}
+
+.portfolioSection[data-reveal="shown"] .categoryButtons li {
+    animation: slideFromLeft 0.75s cubic-bezier(.22, 1, .36, 1) both;
+
+    &:nth-child(even) {
+        animation-name: slideFromRight;
+    }
+
+    @for $i from 2 through 6 {
+        &:nth-child(#{$i}) {
+            animation-delay: #{($i - 1) * 0.12}s;
+        }
+    }
+}
+
+@keyframes slideFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-70px);
+    }
+}
+
+@keyframes slideFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(70px);
+    }
+}
+
+// Space above the CV button when the contact list makes the menu taller than the screen
+.mobileContacts {
+    margin-bottom: 1.5rem;
 }
