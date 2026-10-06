@@ -1,0 +1,58 @@
+.navbar {
+    // background-color: aqua;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+}
+
+.main {
+    // background-color: rebeccapurple;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.wrapper {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    // background: #050505;
+}
+
+
+// Fan lines, waves and the lilac circle (shapes, colours and animations) live in public/img/mesh.svg.
+
+// The artwork is the original background drawn upside down, hence the flip.
+// Scale and offsets reproduce how the original framed it: image 100vw wide,
+// object-fit: cover in a box 130vh tall anchored to the bottom of the screen.
+// The SVG's viewBox (-10 -40 730 419.82) is larger than the artwork so the stretched,
+// lowered waves aren't clipped; width/left below keep the drawing exactly where it was.
+.mesh {
+    position: absolute;
+    width: 126.43vw;
+    height: auto;
+    left: -7.5vw;
+    top: calc(35vh - 37.2vw);
+    transform: scale(-1, -1);
+}
+
+// Portrait screens: keep the waves big enough to read behind the content
+@media (max-aspect-ratio: 1/1) {
+    .mesh {
+        width: 260.56vw;
+        left: -67vw;
+        top: calc(50vh - 95vw);
+    }
+}

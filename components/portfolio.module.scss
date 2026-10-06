@@ -1,0 +1,1301 @@
+$ink: #1a1a1a;
+$muted: #55525e;
+$lilac: #b4acd5;
+$lilac-deep: #6f64a8;
+$card-bg: rgba(255, 255, 255, 0.84);
+
+// Fade-up entrance, staggered like the original portfolio
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate {
+    opacity: 0;
+    animation: fadeUp 0.9s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+.page {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 6rem 1.5rem 5rem;
+    color: $ink;
+}
+
+// ---------- Hero (home) ----------
+// Recreates the original portfolio intro: photo slides in from the left,
+// the oblique shapes glide down from the top-right corner.
+
+.hero {
+    position: relative;
+    height: 100vh;
+    min-height: 40rem;
+    overflow: hidden;
+    color: $ink;
+}
+
+.heroPhoto {
+    // The shape's bottom corner sits ~3% of the width above the image's bottom edge;
+    // dropping the image 6% pushes that corner below the fold at every size
+    --photo-w: clamp(26rem, 44vw, 52rem);
+    position: absolute;
+    bottom: calc(var(--photo-w) * -0.06);
+    left: calc(var(--photo-w) * -0.27);
+    width: var(--photo-w);
+    height: auto;
+    z-index: 2;
+    opacity: 0;
+    animation: slideInLeft 1.5s ease-out forwards;
+}
+
+.heroElements {
+    position: absolute;
+    top: -5vw;
+    right: -9vw;
+    width: clamp(20rem, 40vw, 48rem);
+    height: auto;
+    z-index: 1;
+    opacity: 0;
+    animation: slideDownOblique 1.6s 1s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+// Moves along the shapes' own ~32° slant, coming in from above
+@keyframes slideDownOblique {
+    from {
+        opacity: 0;
+        transform: translate(45%, -75%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+.heroText {
+    position: absolute;
+    top: 42%;
+    left: 35%;
+    right: 0;
+    z-index: 3;
+}
+
+.heroLine {
+    width: 100%;
+    height: 3px;
+    margin: 0.75rem 0;
+    background: #bc9ec1;
+    transform-origin: right;
+    transform: scaleX(0);
+    animation: expandLine 3.5s 1.6s cubic-bezier(.45, 0, .2, 1) forwards;
+}
+
+@keyframes expandLine {
+    to {
+        transform: scaleX(1);
+    }
+}
+
+// Phones and portrait tablets: text on top, photo and shapes below
+@media (max-width: 768px), (max-aspect-ratio: 1/1) {
+    .heroText {
+        top: 7rem;
+        left: 1.5rem;
+        right: 1.5rem;
+    }
+
+    .heroPhoto {
+        --photo-w: min(110vw, 60rem);
+    }
+
+    .heroElements {
+        width: min(60vw, 30rem);
+        top: auto;
+        bottom: 35%;
+        right: -15vw;
+    }
+}
+
+.name {
+    font-size: clamp(2.2rem, 4vw, 3.6rem);
+    font-weight: 600;
+    color: #1f2232;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    animation-delay: 0.6s;
+}
+
+.nameLine {
+    width: 6rem;
+    height: 3px;
+    margin: 1rem 0;
+    background: $lilac;
+    transform-origin: left;
+    animation: growLine 0.8s 0.9s cubic-bezier(.22, 1, .36, 1) backwards;
+}
+
+@keyframes growLine {
+    from {
+        transform: scaleX(0);
+    }
+}
+
+.title {
+    font-size: clamp(1.05rem, 1.7vw, 1.5rem);
+    font-weight: 300;
+    color: #1f2232;
+    line-height: 1.6;
+    animation-delay: 1.1s;
+}
+
+// ---------- Contacts ----------
+
+.contacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 1.4s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+.contactLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    background: $card-bg;
+    border: 1px solid rgba($ink, 0.12);
+    font-size: 0.9rem;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+
+    svg {
+        width: 1.1rem;
+        height: 1.1rem;
+        fill: currentColor;
+    }
+
+    &:hover {
+        background: $ink;
+        color: #fff;
+        border-color: $ink;
+    }
+}
+
+// ---------- Project list ----------
+
+.pageHeader {
+    margin-bottom: 2.5rem;
+}
+
+.projectGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: 1.5rem;
+}
+
+.projectCard {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1rem 1.5rem;
+    border-radius: 1.25rem;
+    background: $card-bg;
+    border: 1px solid rgba($ink, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 40px rgba($lilac-deep, 0.2);
+    }
+}
+
+.projectImage {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    margin-bottom: 1rem;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: #fff;
+
+    img {
+        object-fit: contain;
+    }
+}
+
+// Branded cover for projects without public screenshots
+.coverFallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.3rem;
+    padding: 1.25rem 1.4rem;
+    background: linear-gradient(135deg, #1f2232 0%, #2c3048 60%, #4a4363 100%);
+    color: #fff;
+}
+
+.coverShapes {
+    object-fit: contain;
+    object-position: right top;
+    opacity: 0.55;
+    transform: translate(18%, -12%) scale(0.95);
+}
+
+.coverTitle {
+    position: relative;
+    font-size: 1.35rem;
+    font-weight: 600;
+}
+
+.coverTech {
+    position: relative;
+    font-size: 0.85rem;
+    color: $lilac;
+}
+
+.projectMeta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+    margin-bottom: 0.4rem;
+    font-size: 0.8rem;
+    color: $muted;
+}
+
+.badge {
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    font-weight: 600;
+    color: #1f2232;
+    background: hsla(342, 42%, 81%, 0.55);
+}
+
+.detailText .projectMeta {
+    padding: 0;
+    margin-bottom: 0.75rem;
+}
+
+.projectTitle {
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding: 0 0.5rem;
+}
+
+.projectTagline {
+    flex: 1;
+    margin-top: 0.4rem;
+    padding: 0 0.5rem;
+    color: $muted;
+    line-height: 1.55;
+}
+
+.more {
+    margin-top: 1rem;
+    padding: 0 0.5rem;
+    font-weight: 600;
+    color: $lilac-deep;
+}
+
+.empty {
+    color: $muted;
+}
+
+// ---------- Project details ----------
+
+.back {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: $lilac-deep;
+    font-weight: 500;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.detailHeader {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+    gap: 2.5rem;
+    align-items: center;
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.detailImage {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    background: #fff;
+    opacity: 0;
+    animation: fadeUp 1s 0.4s cubic-bezier(.22, 1, .36, 1) forwards;
+
+    img {
+        object-fit: contain;
+    }
+}
+
+.projectLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 1.3s cubic-bezier(.22, 1, .36, 1) forwards;
+
+    a {
+        display: inline-block;
+        padding: 0.55rem 1rem;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: background 0.2s, color 0.2s;
+    }
+}
+
+.websiteLink {
+    background: $ink;
+    color: #fff;
+
+    &:hover {
+        background: $lilac-deep;
+    }
+}
+
+.prototypeLink {
+    background: $card-bg;
+    border: 1px solid $lilac;
+
+    &:hover {
+        background: $lilac;
+    }
+}
+
+.codeLink {
+    background: $card-bg;
+    border: 1px solid rgba($ink, 0.25);
+
+    &::before {
+        content: "</> ";
+        font-weight: 600;
+        color: $lilac-deep;
+    }
+
+    &:hover {
+        background: $ink;
+        color: #fff;
+    }
+}
+
+.techList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1.25rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 1.2s cubic-bezier(.22, 1, .36, 1) forwards;
+
+    li {
+        padding: 0.25rem 0.7rem;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: #1f2232;
+        background: rgba($lilac, 0.28);
+        border: 1px solid rgba($lilac, 0.6);
+    }
+}
+
+.gallery {
+    margin-top: 2.5rem;
+}
+
+.galleryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 26rem), 1fr));
+    gap: 1.5rem;
+
+    figcaption {
+        margin-top: 0.6rem;
+        font-size: 0.9rem;
+        color: $muted;
+    }
+}
+
+.galleryImage {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    cursor: zoom-in;
+    aspect-ratio: 16 / 10;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid rgba($ink, 0.1);
+    box-shadow: 0 10px 30px rgba($ink, 0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    img {
+        object-fit: contain; // wide app screenshots keep their sidebar; 16:10 images still fill the frame
+        object-position: center;
+    }
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 40px rgba($lilac-deep, 0.2);
+    }
+}
+
+.details {
+    margin-top: 3.5rem;
+    padding: 2rem;
+    border-radius: 1.25rem;
+    background: $card-bg;
+    border: 1px solid rgba($ink, 0.1);
+    line-height: 1.7;
+}
+
+.detailTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.detailSection {
+    & + & {
+        margin-top: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: $lilac-deep;
+        margin-bottom: 0.4rem;
+    }
+
+    ul {
+        margin-top: 0.6rem;
+        padding-left: 1.25rem;
+        list-style: disc;
+    }
+
+    li + li {
+        margin-top: 0.4rem;
+    }
+
+    b {
+        font-weight: 600;
+    }
+}
+
+// ---------- Navbar ----------
+// Left-aligned like the original: text links, then GitHub / LinkedIn icons
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.25rem, 6vw, 7.5rem);
+    padding: 1.5rem clamp(1.25rem, 7.5vw, 9rem);
+    color: #1f2232;
+    font-weight: 600;
+
+    a {
+        position: relative;
+        transition: color 0.2s;
+
+        &:hover {
+            color: #bc9ec1;
+        }
+    }
+
+    a:not(.navIcon)::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 100%;
+        height: 2px;
+        background: #bc9ec1;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s;
+    }
+
+    a:not(.navIcon):hover::after {
+        transform: scaleX(1);
+    }
+}
+
+.navIcon {
+    display: inline-flex;
+
+    svg {
+        width: 1.9rem;
+        height: 1.9rem;
+        fill: currentColor;
+        transition: transform 0.3s;
+    }
+
+    &:hover svg {
+        transform: scale(1.1);
+    }
+}
+
+@media (max-width: 480px) {
+    .nav {
+        font-size: 0.9rem;
+    }
+
+    .navIcon svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
+
+// ---------- Portfolio tabs ----------
+
+.tabs {
+    display: flex;
+    gap: 0.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    border-bottom: 2px solid rgba(#1f2232, 0.15);
+    margin-bottom: 1.25rem;
+}
+
+.tab {
+    flex-shrink: 0;
+    padding: 0.7rem 1.4rem;
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    border-radius: 0.9rem 0.9rem 0 0;
+    font-weight: 500;
+    color: $muted;
+    margin-bottom: -2px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, background 0.2s;
+
+    &:hover {
+        color: #1f2232;
+    }
+}
+
+.tabActive {
+    color: #1f2232;
+    font-weight: 600;
+    background: hsla(342, 42%, 81%, 0.45);
+    border-bottom-color: #bc9ec1;
+}
+
+.tabDescription {
+    color: $muted;
+    margin-bottom: 1.75rem;
+}
+
+// ---------- Home: hero + portfolio as one scrolling page ----------
+
+// Snap between the hero and the portfolio, only on the home page
+:root:has(.home) {
+    scroll-snap-type: y proximity;
+}
+
+.hero {
+    scroll-snap-align: start;
+}
+
+.portfolioAnchor {
+    min-height: 100vh;
+    scroll-snap-align: start;
+}
+
+.portfolioSection {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 5rem 1.5rem 4rem;
+    color: $ink;
+
+}
+
+// Cards are visible by default. Once JS confirms the section is still below the fold it "arms" them
+// (hidden), then plays the entrance when they scroll into view — they can never get stuck invisible.
+.portfolioSection[data-reveal="armed"] .projectCard {
+    opacity: 0;
+}
+
+.portfolioSection[data-reveal="shown"] .projectCard {
+    opacity: 0;
+    animation: fadeUp 0.9s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+.sectionTitle {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 600;
+    color: #1f2232;
+    letter-spacing: -0.02em;
+}
+
+// ---------- Scroll cue (mouse + chevron) ----------
+
+.scrollCue {
+    // Centered with margins: the fadeUp entrance owns `transform`
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: fit-content;
+    margin: 0 auto;
+    bottom: 1.75rem;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem;
+    color: #1f2232;
+    opacity: 0;
+    animation: fadeUp 0.9s 2.4s cubic-bezier(.22, 1, .36, 1) forwards;
+
+    &:hover .mouse {
+        border-color: #bc9ec1;
+    }
+}
+
+.mouse {
+    position: relative;
+    width: 1.6rem;
+    height: 2.5rem;
+    border: 2px solid currentColor;
+    border-radius: 1rem;
+    transition: border-color 0.2s;
+}
+
+.wheel {
+    position: absolute;
+    top: 0.45rem;
+    left: 50%;
+    width: 4px;
+    height: 0.5rem;
+    margin-left: -2px;
+    border-radius: 2px;
+    background: #bc9ec1;
+    animation: wheelRoll 1.8s ease-in-out infinite;
+}
+
+@keyframes wheelRoll {
+    0% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    80%,
+    100% {
+        opacity: 0;
+        transform: translateY(0.7rem);
+    }
+}
+
+.chevron {
+    width: 1.1rem;
+    height: 1.1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    animation: chevronBounce 1.8s ease-in-out infinite;
+}
+
+@keyframes chevronBounce {
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.4;
+    }
+
+    50% {
+        transform: translateY(4px);
+        opacity: 1;
+    }
+}
+
+// Stacked hero: the photo fills the bottom-left, so the cue moves to the right
+@media (max-width: 768px), (max-aspect-ratio: 1/1) {
+    .scrollCue {
+        left: auto;
+        right: 1.25rem;
+        margin: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wheel,
+    .chevron {
+        animation: none;
+    }
+}
+
+// ---------- Hero title: role + stack, like the CV ----------
+
+.stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.6rem;
+    font-size: 0.85em;
+    color: $muted;
+
+    span + span::before {
+        content: "|";
+        margin-right: 0.6rem;
+        color: #bc9ec1;
+    }
+}
+
+// ---------- CV buttons ----------
+
+.cvButtonCompact {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+
+    svg {
+        width: 1.1rem;
+        height: 1.1rem;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    &:hover {
+        transform: translateY(-1px);
+    }
+}
+
+// In the navbar: same weight as the links, outlined so it reads as an action
+.nav .cvButtonCompact {
+    padding: 0.35rem 0.9rem;
+    border: 2px solid #1f2232;
+
+    &::after {
+        display: none;
+    }
+
+    &:hover {
+        background: #1f2232;
+        color: #fff;
+    }
+}
+
+// ---------- About ----------
+
+.aboutAnchor {
+    scroll-margin-top: 1rem;
+}
+
+.aboutSection {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+    color: $ink;
+}
+
+.aboutIntro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 2rem 3rem;
+    align-items: center;
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.aboutText {
+    line-height: 1.75;
+    font-size: 1.05rem;
+    color: $ink;
+
+    p + p {
+        margin-top: 0.75rem;
+    }
+}
+
+// Key facts next to the intro (location, experience, focus), each with an icon
+.aboutFacts {
+    display: grid;
+    gap: 1rem;
+    padding-left: 2rem;
+    border-left: 2px solid rgba(#bc9ec1, 0.6);
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    svg {
+        flex-shrink: 0;
+        width: 2.4rem;
+        height: 2.4rem;
+        padding: 0.55rem;
+        border-radius: 50%;
+        background: hsla(342, 42%, 81%, 0.45);
+        fill: none;
+        stroke: #1f2232;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    span {
+        display: flex;
+        flex-direction: column;
+        font-weight: 500;
+        color: #1f2232;
+        line-height: 1.35;
+    }
+
+    b {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: $muted;
+    }
+
+    @media (max-width: 900px) {
+        padding-left: 0;
+        padding-top: 1.5rem;
+        border-left: none;
+        border-top: 2px solid rgba(#bc9ec1, 0.6);
+    }
+}
+
+.aboutGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    // stretch: the Experience card always ends level with Education
+    align-items: stretch;
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.aboutColumn {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.aboutGridThree {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.aboutCard {
+    padding: 1.75rem;
+    border-radius: 1.25rem;
+    background: $card-bg;
+    border: 1px solid rgba($ink, 0.1);
+
+    h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1.25rem;
+        color: #1f2232;
+    }
+}
+
+.timeline {
+    position: relative;
+    display: grid;
+    gap: 1.5rem;
+    padding-left: 1.4rem;
+    border-left: 2px solid rgba(#bc9ec1, 0.6);
+
+    > li {
+        position: relative;
+
+        // Lilac node on the line, as in the CV
+        &::before {
+            content: "";
+            position: absolute;
+            left: calc(-1.4rem - 7px);
+            top: 0.25rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #bc9ec1;
+            box-shadow: 0 0 0 3px #f4f4f4;
+        }
+    }
+
+    h4 {
+        font-weight: 600;
+        line-height: 1.35;
+    }
+
+    ul {
+        margin-top: 0.5rem;
+        padding-left: 1.1rem;
+        list-style: disc;
+        color: $muted;
+        line-height: 1.6;
+        font-size: 0.93rem;
+    }
+
+    ul li + li {
+        margin-top: 0.3rem;
+    }
+}
+
+.timelinePeriod {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $lilac-deep;
+    margin-bottom: 0.15rem;
+}
+
+.timelineOrg {
+    font-size: 0.9rem;
+    color: $muted;
+}
+
+.skillGroup {
+    & + & {
+        margin-top: 1rem;
+    }
+
+    h4 {
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: $muted;
+    }
+
+    .techList {
+        margin-top: 0.5rem;
+        animation: none;
+        opacity: 1;
+    }
+}
+
+.plainList {
+    display: grid;
+    gap: 0.5rem;
+    line-height: 1.5;
+
+    li {
+        position: relative;
+        padding-left: 1.2rem;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.65em;
+            width: 0.6rem;
+            height: 2px;
+            background: #bc9ec1;
+        }
+    }
+}
+
+// ---------- Navbar on small screens ----------
+
+@media (max-width: 640px) {
+    // GitHub / LinkedIn stay reachable from the hero contacts
+    .nav .navIcon {
+        display: none;
+    }
+
+    .nav {
+        gap: 1rem;
+        justify-content: space-between;
+    }
+}
+
+// ---------- Screenshot lightbox ----------
+
+.lightbox {
+    // Full-screen overlay; the image sits in the middle, controls float over it.
+    // Pinned to the viewport edges (not 100vw, which includes the scrollbar and pushed
+    // the right-hand buttons underneath it).
+    position: fixed;
+    inset: 0;
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 3.5rem 4.5rem 1.5rem;
+    border: none;
+    background: rgba(#16182a, 0.985);
+    color: #fff;
+
+    &::backdrop {
+        background: transparent;
+    }
+
+    &[open] {
+        display: flex;
+        animation: lightboxIn 0.25s ease-out;
+    }
+
+    @media (max-width: 640px) {
+        padding: 3.5rem 0.75rem 4.25rem;
+    }
+}
+
+@keyframes lightboxIn {
+    from {
+        opacity: 0;
+    }
+}
+
+.lightboxFigure {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    min-height: 0;
+
+    figcaption {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.4rem 1rem;
+        text-align: center;
+        font-size: 0.95rem;
+        color: rgba(#fff, 0.85);
+    }
+}
+
+.lightboxImage {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+
+    img {
+        object-fit: contain;
+    }
+}
+
+.lightboxCount {
+    color: $lilac;
+    font-weight: 600;
+}
+
+.lightboxClose,
+.lightboxNav {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(#fff, 0.12);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    svg {
+        width: 1.4rem;
+        height: 1.4rem;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    &:hover,
+    &:focus-visible {
+        background: $lilac-deep;
+    }
+}
+
+.lightboxClose {
+    top: 0.75rem;
+    right: 0.75rem;
+}
+
+.lightboxNav {
+    top: 50%;
+    margin-top: -1.375rem;
+}
+
+.lightboxPrev {
+    left: 0.9rem;
+}
+
+.lightboxNext {
+    right: 0.9rem;
+}
+
+// Phones: arrows move to the bottom corners so they don't cover the screenshot
+@media (max-width: 640px) {
+    .lightboxNav {
+        top: auto;
+        bottom: 0.75rem;
+        margin-top: 0;
+    }
+}
+
+// ---------- Back to top ----------
+
+.backToTop {
+    position: fixed;
+    right: 1.5rem;
+    bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+    z-index: 30;
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: #1f2232;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(#1f2232, 0.25);
+    cursor: pointer;
+    // Hidden until the visitor scrolls past the first screen
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: opacity 0.25s, transform 0.25s, background 0.2s;
+
+    svg {
+        width: 1.3rem;
+        height: 1.3rem;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    &:hover,
+    &:focus-visible {
+        background: $lilac-deep;
+    }
+
+    @media (max-width: 640px) {
+        right: 1rem;
+        bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+        width: 2.75rem;
+        height: 2.75rem;
+    }
+}
+
+.backToTopVisible {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+}
+
+// ---------- Section heading underline (Portfolio, About me) ----------
+// Same line as under the name in the hero: full width of the content below it, drawing in
+// from the right — here when the heading scrolls into view instead of on page load.
+
+.sectionLine {
+    width: 100%;
+    height: 3px;
+    margin: 0.75rem 0 0;
+    background: #bc9ec1;
+    transform-origin: right;
+}
+
+.pageHeader[data-line="armed"] .sectionLine {
+    transform: scaleX(0);
+}
+
+.pageHeader[data-line="drawn"] .sectionLine {
+    transform: scaleX(0);
+    animation: expandLine 3.5s cubic-bezier(.45, 0, .2, 1) forwards;
+}
+
+// ---------- Tab without projects yet ----------
+
+.upcoming {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    max-width: 46rem;
+    padding: 1.75rem;
+    border-radius: 1.25rem;
+    background: $card-bg;
+    border: 1px dashed rgba(#bc9ec1, 0.9);
+
+    svg {
+        flex-shrink: 0;
+        width: 3rem;
+        height: 3rem;
+        padding: 0.7rem;
+        border-radius: 50%;
+        background: hsla(342, 42%, 81%, 0.45);
+        fill: none;
+        stroke: #1f2232;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    h3 {
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: #1f2232;
+    }
+
+    p {
+        margin-top: 0.35rem;
+        color: $muted;
+        line-height: 1.65;
+    }
+}
