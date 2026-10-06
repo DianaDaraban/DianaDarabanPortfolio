@@ -1433,9 +1433,9 @@ $card-bg: rgba(255, 255, 255, 0.84);
     // and pushed low enough that the dark shape's bottom corner stays off-screen
     .heroPhoto {
         // Also bounded by screen height so on short phones the circle never reaches the name
-        --photo-w: min(207vw, 58rem, calc((100svh - 254px) * 1.37));
+        --photo-w: min(176vw, 49.3rem, calc((90svh - 254px) * 1.37));
         left: calc(50vw - var(--photo-w) * 0.761);
-        bottom: calc(var(--photo-w) * -0.06 - 27svh);
+        bottom: calc(var(--photo-w) * -0.06 - 17svh);
     }
 
     // Scroll cue centred and fully above the bottom edge (svh excludes the browser bars)
@@ -1659,7 +1659,7 @@ $card-bg: rgba(255, 255, 255, 0.84);
 }
 
 .portfolioSection[data-reveal="shown"] .categoryButtons li {
-    animation: slideFromLeft 0.75s cubic-bezier(.22, 1, .36, 1) both;
+    animation: slideFromLeft 1.6s cubic-bezier(.22, 1, .36, 1) both;
 
     &:nth-child(even) {
         animation-name: slideFromRight;
@@ -1667,7 +1667,7 @@ $card-bg: rgba(255, 255, 255, 0.84);
 
     @for $i from 2 through 6 {
         &:nth-child(#{$i}) {
-            animation-delay: #{($i - 1) * 0.12}s;
+            animation-delay: #{($i - 1) * 0.3}s;
         }
     }
 }
