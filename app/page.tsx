@@ -58,7 +58,10 @@ export default function Home() {
               {profile.stack.map(s => <span key={s}>{s}</span>)}
             </span>
           </h2>
-          <ContactLinks />
+          {/* On phones the contact details live in the menu (Contact) */}
+          <div className={styles.heroContacts}>
+            <ContactLinks />
+          </div>
         </div>
         <ScrollCue />
       </section>

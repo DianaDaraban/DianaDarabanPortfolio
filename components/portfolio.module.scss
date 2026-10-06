@@ -1350,3 +1350,290 @@ $card-bg: rgba(255, 255, 255, 0.84);
         padding-block: 0.75rem;
     }
 }
+
+// =====================================================================
+// Phone layout (≤ 768px). Desktop is untouched: the rules below only add
+// mobile-only elements (burger, category buttons) or override at ≤ 768px.
+// =====================================================================
+
+// Desktop: the link wrapper is transparent to the navbar's flex layout
+.navLinks {
+    display: contents;
+}
+
+.burger,
+.categoryButtons {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    // ----- Navbar: burger only -----
+    .nav {
+        justify-content: flex-end;
+        padding: 0.75rem 1rem;
+    }
+
+    .navLinks {
+        display: none;
+    }
+
+    .burger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 2.9rem;
+        height: 2.9rem;
+        padding: 0 0.7rem;
+        border: none;
+        border-radius: 50%;
+        background: rgba(#fff, 0.85);
+        box-shadow: 0 4px 14px rgba(#1f2232, 0.12);
+        cursor: pointer;
+
+        span {
+            display: block;
+            height: 2px;
+            border-radius: 2px;
+            background: #1f2232;
+        }
+    }
+
+    // ----- Hero -----
+    .hero {
+        height: 100svh;
+        min-height: 36rem;
+    }
+
+    // Oblique shapes in the top-right corner are hidden on phones
+    .heroElements {
+        display: none;
+    }
+
+    // Name and role a little above the centre, leaving the lower part for the photo
+    .heroText {
+        top: 27svh;
+        left: 1.5rem;
+        right: 1.5rem;
+    }
+
+    .name {
+        font-size: clamp(2.3rem, 10vw, 2.9rem);
+    }
+
+    .title {
+        font-size: 1.15rem;
+    }
+
+    .heroContacts {
+        display: none;
+    }
+
+    // Slightly larger photo, same bottom-left position
+    .heroPhoto {
+        --photo-w: min(128vw, 36rem);
+    }
+
+    // Scroll cue centred and fully above the bottom edge (svh excludes the browser bars)
+    .scrollCue {
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+    }
+
+    // ----- Portfolio: full-width category buttons, projects on their own pages -----
+    .tabs,
+    .tabPanel {
+        display: none;
+    }
+
+    .categoryButtons {
+        display: grid;
+        gap: 0.75rem;
+
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            width: 100%;
+            min-height: 4.5rem;
+            padding: 1rem 1.25rem;
+            border-radius: 1rem;
+            background: $card-bg;
+            border: 1px solid rgba($ink, 0.1);
+            color: #1f2232;
+            transition: background 0.2s;
+
+            &:active {
+                background: hsla(342, 42%, 81%, 0.45);
+            }
+        }
+
+        svg {
+            flex-shrink: 0;
+            width: 1.4rem;
+            height: 1.4rem;
+            fill: none;
+            stroke: $lilac-deep;
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+    }
+
+    .categoryButtonText {
+        display: flex;
+        flex-direction: column;
+
+        b {
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        small {
+            font-size: 0.85rem;
+            color: $muted;
+        }
+    }
+}
+
+// ----- Mobile menu (full-screen dialog) -----
+
+.mobileMenu {
+    position: fixed;
+    inset: 0;
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 5rem 1.25rem calc(2rem + env(safe-area-inset-bottom, 0px));
+    border: none;
+    background: #f4f4f4;
+    color: #1f2232;
+    overflow-y: auto;
+
+    &::backdrop {
+        background: transparent;
+    }
+
+    &[open] {
+        animation: lightboxIn 0.2s ease-out;
+    }
+}
+
+.mobileMenuClose {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    display: grid;
+    place-items: center;
+    width: 2.9rem;
+    height: 2.9rem;
+    border: none;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 4px 14px rgba(#1f2232, 0.12);
+    cursor: pointer;
+
+    svg {
+        width: 1.3rem;
+        height: 1.3rem;
+        fill: none;
+        stroke: #1f2232;
+        stroke-width: 2.2;
+        stroke-linecap: round;
+    }
+}
+
+.mobileMenuLinks {
+    display: grid;
+    gap: 0.25rem;
+
+    > a,
+    > .mobileMenuToggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        min-height: 3.75rem;
+        padding: 0 0.25rem;
+        border: none;
+        border-bottom: 1px solid rgba(#1f2232, 0.1);
+        background: none;
+        font: inherit;
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: #1f2232;
+        text-align: left;
+        cursor: pointer;
+    }
+
+    > .mobileMenuToggle svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        fill: none;
+        stroke: #1f2232;
+        stroke-width: 2.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transition: transform 0.2s;
+    }
+
+    > .mobileMenuToggle[aria-expanded="true"] svg {
+        transform: rotate(180deg);
+    }
+}
+
+// Contact rows: one per item, full width
+.mobileContacts {
+    display: grid;
+    gap: 0.6rem;
+    padding: 0.9rem 0 0.6rem;
+
+    a {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        width: 100%;
+        min-height: 3.5rem;
+        padding: 0 1.1rem;
+        border-radius: 0.9rem;
+        background: #fff;
+        border: 1px solid rgba(#1f2232, 0.1);
+        font-size: 1rem;
+        font-weight: 500;
+        color: #1f2232;
+        word-break: break-all;
+    }
+
+    svg {
+        flex-shrink: 0;
+        width: 1.3rem;
+        height: 1.3rem;
+        fill: #1f2232;
+    }
+}
+
+.mobileMenu .mobileMenuLinks > .mobileMenuCv {
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+    border: none;
+    border-radius: 999px;
+    background: #1f2232;
+    color: #fff;
+    font-size: 1.1rem;
+
+    svg {
+        width: 1.3rem;
+        height: 1.3rem;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+}

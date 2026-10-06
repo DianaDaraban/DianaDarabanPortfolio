@@ -6,7 +6,7 @@ import styles from "./portfolio.module.scss"
 // Section title with the lilac underline. The line draws itself when the heading scrolls
 // into view (not on page load, when these sections are still below the fold), then keeps
 // a slow shine. Without JS the line is simply shown.
-export default function SectionHeading({ children }: { children: React.ReactNode }) {
+export default function SectionHeading({ children, as: Tag = "h2" }: { children: React.ReactNode, as?: "h1" | "h2" }) {
     const ref = useRef<HTMLElement>(null)
 
     useEffect(() => {
@@ -25,7 +25,7 @@ export default function SectionHeading({ children }: { children: React.ReactNode
 
     return (
         <header ref={ref} className={styles.pageHeader}>
-            <h2 className={styles.sectionTitle}>{children}</h2>
+            <Tag className={styles.sectionTitle}>{children}</Tag>
             <div className={styles.sectionLine} />
         </header>
     )

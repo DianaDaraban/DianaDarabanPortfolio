@@ -56,6 +56,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#f4f4f4",
+  colorScheme: "only light",
 };
 
 export default function RootLayout({
@@ -73,9 +74,12 @@ export default function RootLayout({
         <main className={styles.main}>
           <div className={styles.wrapper}>
             {/* Animated background (fan lines, waves, lilac circle). Its CSS animations live inside the
-            SVG file, so the browser downloads it once and caches it instead of receiving it in every page. */}
-            {/* eslint-disable-next-line @next/next/no-img-element -- animated SVG must stay a plain file, not an optimised raster */}
-            <img src="/img/mesh.svg" alt="" className={styles.mesh} width={730} height={420} fetchPriority="low" />
+            SVG file, so the browser downloads it once and caches it instead of receiving it in every page.
+            Phones get their own layout of the same artwork (mesh-mobile.svg); only one of the two is downloaded. */}
+            <picture>
+              <source media="(max-width: 768px)" srcSet="/img/mesh-mobile.svg" />
+              <img src="/img/mesh.svg" alt="" className={styles.mesh} width={730} height={420} fetchPriority="low" />
+            </picture>
           </div>
           <nav className={styles.navbar}>
             <Navbar />

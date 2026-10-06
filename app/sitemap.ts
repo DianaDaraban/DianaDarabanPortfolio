@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     return [
         { url: siteUrl, changeFrequency: "monthly", priority: 1 },
+        ...getActiveCategories().map(c => ({ url: `${siteUrl}/portfolio/${c.id}`, changeFrequency: "monthly" as const, priority: 0.8 })),
         ...projectPages,
     ]
 }

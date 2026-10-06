@@ -1,9 +1,10 @@
 "use client"
 
 import { useEffect, useRef, useSyncExternalStore } from "react"
+import Link from "next/link"
 import ProjectList from "./ProjectList"
 import SectionHeading from "./SectionHeading"
-import { Category, getActiveCategories, getCategory } from "@/data/projects"
+import { Category, getActiveCategories, getCategory, getProjects } from "@/data/projects"
 import styles from "./portfolio.module.scss"
 
 // The active tab lives in ?tab= so links like /?tab=frontend#portfolio open the right one.
@@ -62,6 +63,25 @@ export default function PortfolioBrowser() {
         <section ref={sectionRef} className={styles.portfolioSection}>
             <SectionHeading>Portfolio</SectionHeading>
 
+            {/* Phones: one full-width button per category, each opening its own page */}
+            <ul className={styles.categoryButtons}>
+                {categories.map(c => {
+                    const count = getProjects(c.id).length
+                    return (
+                        <li key={c.id}>
+                            <Link href={`/portfolio/${c.id}`}>
+                                <span className={styles.categoryButtonText}>
+                                    <b>{c.label}</b>
+                                    <small>{count ? `${count} project${count > 1 ? "s" : ""}` : "Coming soon"}</small>
+                                </span>
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+                            </Link>
+                        </li>
+                    )
+                })}
+            </ul>
+
+            {/* Desktop: tabs switching the project grid in place */}
             <div className={styles.tabs} role="tablist" aria-label="Portfolio categories">
                 {categories.map(c => (
                     <button
@@ -77,8 +97,10 @@ export default function PortfolioBrowser() {
                 ))}
             </div>
 
-            <p className={styles.tabDescription}>{active.description}</p>
-            <ProjectList key={active.id} category={active.id} />
+            <div className={styles.tabPanel}>
+                <p className={styles.tabDescription}>{active.description}</p>
+                <ProjectList key={active.id} category={active.id} />
+            </div>
         </section>
     )
 }

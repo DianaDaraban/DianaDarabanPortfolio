@@ -15,7 +15,7 @@ const linkStyles: Record<ProjectLink["kind"], string> = {
 export default function ProjectDetails({ project, category }: { project: Project, category: CategoryInfo }) {
     return (
         <article className={styles.page}>
-            <Link href={`/?tab=${category.id}#portfolio`} className={styles.back}>← {category.label}</Link>
+            <Link href={`/portfolio/${category.id}`} className={styles.back}>← {category.label}</Link>
 
             <header className={styles.detailHeader}>
                 <div className={styles.detailText}>
