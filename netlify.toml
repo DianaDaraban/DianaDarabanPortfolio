@@ -1,0 +1,9 @@
+# Netlify detects Next.js and deploys it with its OpenNext adapter; these settings
+# override whatever the site had configured for the previous static HTML version.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  # Same Node major as local development (Next.js 16 needs 20.9+)
+  NODE_VERSION = "22"
