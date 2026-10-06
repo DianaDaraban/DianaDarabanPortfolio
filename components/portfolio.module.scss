@@ -1299,3 +1299,54 @@ $card-bg: rgba(255, 255, 255, 0.84);
         line-height: 1.65;
     }
 }
+
+// ---------- Touch & small screens ----------
+
+// Every navbar entry gets a finger-sized hit area (44px) without changing how it looks
+.nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+}
+
+.nav a:not(.navIcon)::after {
+    bottom: 0.45rem;
+}
+
+.navIcon {
+    min-width: 2.75rem;
+    justify-content: center;
+}
+
+.back {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    margin-bottom: 0.75rem;
+}
+
+// Phones: tabs wrap into rows instead of scrolling sideways, so every category is visible
+@media (max-width: 640px) {
+    .tabs {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        overflow: visible;
+        border-bottom: none;
+    }
+
+    .tab {
+        padding: 0.6rem 1rem;
+        min-height: 2.75rem;
+        border-radius: 999px;
+        border: 1px solid rgba(#1f2232, 0.15);
+        margin-bottom: 0;
+    }
+
+    .tabActive {
+        border-color: #bc9ec1;
+    }
+
+    .nav {
+        padding-block: 0.75rem;
+    }
+}

@@ -38,13 +38,14 @@
 // Scale and offsets reproduce how the original framed it: image 100vw wide,
 // object-fit: cover in a box 130vh tall anchored to the bottom of the screen.
 // The SVG's viewBox (-10 -40 730 419.82) is larger than the artwork so the stretched,
-// lowered waves aren't clipped; width/left below keep the drawing exactly where it was.
+// lowered waves aren't clipped. Positioned so the circle and lines start below the navbar
+// and the waves reach the right edge of the screen.
 .mesh {
     position: absolute;
     width: 126.43vw;
     height: auto;
-    left: -7.5vw;
-    top: calc(35vh - 37.2vw);
+    left: 0.5vw;
+    top: calc(35vh - 21.2vw);
     transform: scale(-1, -1);
 }
 
@@ -53,6 +54,6 @@
     .mesh {
         width: 260.56vw;
         left: -67vw;
-        top: calc(50vh - 95vw);
+        top: calc(50vh - 77vw);
     }
 }
