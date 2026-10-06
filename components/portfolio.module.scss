@@ -45,6 +45,8 @@ $card-bg: rgba(255, 255, 255, 0.84);
     // The shape's bottom corner sits ~3% of the width above the image's bottom edge;
     // dropping the image 6% pushes that corner below the fold at every size
     --photo-w: clamp(26rem, 44vw, 52rem);
+    // Tailwind caps images at 100% width; this composition is meant to overflow the screen
+    max-width: none;
     position: absolute;
     bottom: calc(var(--photo-w) * -0.06);
     left: calc(var(--photo-w) * -0.27);
@@ -1410,7 +1412,7 @@ $card-bg: rgba(255, 255, 255, 0.84);
 
     // Name and role a little above the centre, leaving the lower part for the photo
     .heroText {
-        top: calc(27svh + 50px);
+        top: calc(27svh + 80px);
         left: 1.5rem;
         right: 1.5rem;
     }
@@ -1427,17 +1429,24 @@ $card-bg: rgba(255, 255, 255, 0.84);
         display: none;
     }
 
-    // Slightly larger photo, same bottom-left position
+    // Large photo with its circle centred horizontally (the circle sits at 76% of the image width)
+    // and pushed low enough that the dark shape's bottom corner stays off-screen
     .heroPhoto {
-        --photo-w: min(153.6vw, 43.2rem);
+        // Also bounded by screen height so on short phones the circle never reaches the name
+        --photo-w: min(207vw, 58rem, calc((100svh - 254px) * 1.37));
+        left: calc(50vw - var(--photo-w) * 0.761);
+        bottom: calc(var(--photo-w) * -0.06 - 27svh);
     }
 
     // Scroll cue centred and fully above the bottom edge (svh excludes the browser bars)
+    // White here: on phones it sits over the dark shape behind the photo
     .scrollCue {
         left: 0;
         right: 0;
         margin: 0 auto;
         bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+        color: #fff;
+        filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.35));
     }
 
     // ----- Portfolio: full-width category buttons, projects on their own pages -----
