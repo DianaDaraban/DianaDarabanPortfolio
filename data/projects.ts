@@ -229,6 +229,7 @@ export const projects: Project[] = [
         year: "2023",
         categories: ["frontend"],
         links: [
+            { label: "Live website", href: "https://ioana-gelepu.netlify.app/", kind: "website" },
             { label: "Source code on GitHub", href: "https://github.com/DianaDaraban/ioana-gelepu.github.io", kind: "code" },
         ],
         tech: ["React", "Vite", "React Router", "React Bootstrap", "Bootstrap 5", "CSS3", "Responsive design"],
@@ -243,7 +244,7 @@ export const projects: Project[] = [
             {
                 title: "Overview",
                 intro:
-                    "A multi-page presentation site that introduces the lawyer's experience, team and approach. It has eight sections: Experience, Top 10, Team, The Story, Testimonials, Pro Bono, Activities and Contact.",
+                    "A multi-page presentation site that introduces the lawyer's experience, team and approach. It has seven sections: Experience, Top 10, Team, The Story, Testimonials, Pro Bono and Contact.",
             },
             {
                 title: "Implementation",
