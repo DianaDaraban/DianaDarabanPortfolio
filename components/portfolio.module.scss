@@ -1450,7 +1450,8 @@ $card-bg: rgba(255, 255, 255, 0.84);
     .heroPhoto {
         --photo-w: var(--m-photo-w);
         left: calc(50vw - var(--photo-w) * 0.761);
-        top: calc(var(--stack-top) + var(--text-h) + var(--hero-gap) - var(--photo-w) * 0.062);
+        // Raised a little (photo only, the text stays put) to keep clear of the scroll cue
+        top: calc(var(--stack-top) + var(--text-h) + var(--hero-gap) - var(--photo-w) * 0.062 - 40px);
         bottom: auto;
     }
 
