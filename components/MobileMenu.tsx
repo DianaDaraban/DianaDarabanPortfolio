@@ -24,6 +24,20 @@ export default function MobileMenu() {
 
     const close = () => { setOpen(false); setContactOpen(false) }
 
+    // Section links on the home page: close the dialog first (it locks page scrolling while open),
+    // then scroll. Navigating with the dialog still open left the page in place, so it took two taps.
+    const goToSection = (id: string) => (e: React.MouseEvent) => {
+        close()
+        dialogRef.current?.close()
+        if (pathname !== "/") return // the link navigates to /#id normally
+        e.preventDefault()
+        requestAnimationFrame(() => {
+            document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+            window.history.replaceState(null, "", `#${id}`)
+            if (id === "portfolio") window.dispatchEvent(new Event("portfolio-replay"))
+        })
+    }
+
     const contacts = [
         { icon: icons.phone, label: profile.phone, href: `tel:${profile.phone.replace(/[^\d+]/g, "")}` },
         { icon: icons.email, label: profile.email, href: `mailto:${profile.email}` },
@@ -44,8 +58,8 @@ export default function MobileMenu() {
 
                 <nav className={styles.mobileMenuLinks}>
                     {pathname !== "/" && <Link href="/" onClick={close}>Home</Link>}
-                    <Link href="/#portfolio" onClick={close}>Portfolio</Link>
-                    <Link href="/#about" onClick={close}>About me</Link>
+                    <Link href="/#portfolio" onClick={goToSection("portfolio")}>Portfolio</Link>
+                    <Link href="/#about" onClick={goToSection("about")}>About me</Link>
                     <button
                         type="button"
                         onClick={() => setContactOpen(o => !o)}

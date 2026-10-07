@@ -30,6 +30,27 @@ export default function PortfolioBrowser() {
     const active = getCategory(tab ?? "") ?? categories[0]
 
     const sectionRef = useRef<HTMLElement>(null)
+    const buttonsRef = useRef<HTMLUListElement>(null)
+
+    // Phone category buttons slide in every time they come into view (and again when the menu's
+    // Portfolio link is used): data-in "0" parks them off-screen, "1" plays the entrance.
+    useEffect(() => {
+        const list = buttonsRef.current
+        if (!list) return
+        const observer = new IntersectionObserver(([entry]) => {
+            list.dataset.in = entry.isIntersecting ? "1" : "0"
+        }, { threshold: 0.2 })
+        observer.observe(list)
+        const replay = () => {
+            list.dataset.in = "0"
+            requestAnimationFrame(() => requestAnimationFrame(() => { list.dataset.in = "1" }))
+        }
+        window.addEventListener("portfolio-replay", replay)
+        return () => {
+            observer.disconnect()
+            window.removeEventListener("portfolio-replay", replay)
+        }
+    }, [])
 
     // Entrance animation. Cards are visible by default; this only hides ("arms") them when JS runs
     // and the section is still below the fold, then reveals them as it scrolls into view — so they
@@ -64,7 +85,7 @@ export default function PortfolioBrowser() {
             <SectionHeading>Portfolio</SectionHeading>
 
             {/* Phones: one full-width button per category, each opening its own page */}
-            <ul className={styles.categoryButtons}>
+            <ul ref={buttonsRef} className={styles.categoryButtons}>
                 {categories.map(c => {
                     const count = getProjects(c.id).length
                     return (

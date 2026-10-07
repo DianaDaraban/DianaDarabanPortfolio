@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  /* The design is light-only: tells browsers not to apply automatic dark themes
-     (Chrome Auto Dark Mode, Samsung Internet dark mode) or dark form controls */
-  color-scheme: only light;
+  /* Declares dark-mode support so browsers with a forced dark mode (Samsung Internet,
+     Chrome "Darken websites") use the site's own dark styles instead of recolouring it.
+     The site's dark styles below keep exactly the same light palette. */
+  color-scheme: light dark;
   --foreground: #1f2232;
 }
 
@@ -19,12 +20,18 @@ html {
   background-color: #f4f4f4;
 }
 
-/* An explicit dark-scheme rule that keeps the light palette: browsers that force-darken
-   pages which don't handle dark mode themselves (Samsung Internet) leave this one alone */
+/* The site's "dark theme": same light palette, so dark-mode phones see the normal design */
 @media (prefers-color-scheme: dark) {
   html {
     background-color: #f4f4f4;
     color: #1f2232;
+  }
+
+  /* Native controls would otherwise switch to light text in a dark colour scheme */
+  button,
+  dialog,
+  a {
+    color: inherit;
   }
 }
 

@@ -52,13 +52,13 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image", title, description },
   robots: { index: true, follow: true },
-  // Older opt-out read by Samsung Internet and older Android browsers (the viewport colorScheme covers Chrome)
-  other: { "supported-color-schemes": "light only" },
+  // Older equivalent of color-scheme, read by Samsung Internet and older Android browsers
+  other: { "supported-color-schemes": "light dark" },
 };
 
 export const viewport: Viewport = {
   themeColor: "#f4f4f4",
-  colorScheme: "only light",
+  colorScheme: "light dark",
 };
 
 export default function RootLayout({

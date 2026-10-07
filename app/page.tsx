@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import AboutSection from '@/components/AboutSection'
 import ContactLinks from '@/components/ContactLinks'
+import ContactSection from '@/components/ContactSection'
 import PortfolioBrowser from '@/components/PortfolioBrowser'
 import ScrollCue from '@/components/ScrollCue'
 import { profile } from '@/data/profile'
@@ -73,6 +74,10 @@ export default function Home() {
 
       <div id="about" className={styles.aboutAnchor}>
         <AboutSection />
+      </div>
+
+      <div id="contact" className={styles.aboutAnchor}>
+        <ContactSection />
       </div>
     </div>
   )
