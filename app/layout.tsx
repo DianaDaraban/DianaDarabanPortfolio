@@ -53,12 +53,13 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title, description },
   robots: { index: true, follow: true },
   // Older equivalent of color-scheme, read by Samsung Internet and older Android browsers
-  other: { "supported-color-schemes": "light dark" },
+  other: { "supported-color-schemes": "light only" },
 };
 
 export const viewport: Viewport = {
   themeColor: "#f4f4f4",
-  colorScheme: "light dark",
+  // "only light" stops forced dark modes from recolouring the site
+  colorScheme: "only light",
 };
 
 export default function RootLayout({
