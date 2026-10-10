@@ -60,12 +60,13 @@ export const projects: Project[] = [
         slug: "b360",
         title: "B360.ro",
         tagline:
-            "Redesign and rebuild for B360, an advertising production company specialised in vehicle wraps, window graphics and signage — moving from WordPress to Next.js to grow organic traffic. Real client, currently in prototyping.",
-        image: "/img/projects/b360/cover.webp",
+            "Redesign and rebuild for B360, an advertising production company specialised in vehicle wraps, window graphics and signage: from Figma prototype to a Next.js website, moving the brand off WordPress to grow organic traffic. Real client, live preview.",
+        image: "/img/projects/b360/site-home.webp",
         year: "2026",
-        badge: "Client project · In progress",
-        categories: ["ui-ux"],
+        badge: "Client project · Live preview",
+        categories: ["frontend", "ui-ux"],
         links: [
+            { label: "Live website", href: "https://b360-two.vercel.app", kind: "website" },
             {
                 label: "Mobile prototype",
                 href: "https://www.figma.com/proto/CsyefhK1h4QKKwYpPdkbtW/B360.ro?page-id=4%3A148&node-id=4-149&p=f&viewport=216%2C-199%2C0.55&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4%3A149",
@@ -73,150 +74,70 @@ export const projects: Project[] = [
             },
             { label: "Figma design", href: "https://www.figma.com/design/CsyefhK1h4QKKwYpPdkbtW/B360.ro?node-id=4-149", kind: "prototype" },
         ],
-        tech: ["Figma", "Mobile-first UI", "Information Architecture", "SEO", "Next.js (planned)"],
+        tech: ["Next.js (App Router)", "React", "TypeScript", "CSS Modules", "Resend", "Vercel", "SEO & structured data", "Figma"],
         gallery: [
-            { src: "/img/projects/b360/home.webp", caption: "Home: services, loyal clients and recent work, with the fixed action bar" },
-            { src: "/img/projects/b360/menu.webp", caption: "Full-screen menu with custom icons" },
+            { src: "/img/projects/b360/site-home.webp", caption: "Home: photo slideshow under a moving colour wash, title revealed word by word" },
+            { src: "/img/projects/b360/site-mobile.webp", caption: "Mobile: home, services and the full-screen menu, with the fixed action bar" },
+            { src: "/img/projects/b360/site-services.webp", caption: "Services as long pills closed by peeling photo stickers" },
+            { src: "/img/projects/b360/site-clients.webp", caption: "Client sticker carousel and recent work on one screen" },
+            { src: "/img/projects/b360/site-service-hero.webp", caption: "Service page hero" },
+            { src: "/img/projects/b360/site-service-types.webp", caption: "Service overview: intro beside the kinds of work, each linking to the gallery" },
+            { src: "/img/projects/b360/site-compare.webp", caption: "Drag the red line to compare a full and a partial wrap on the same car" },
+            { src: "/img/projects/b360/site-benefits.webp", caption: "Benefits and FAQ side by side" },
+            { src: "/img/projects/b360/site-gallery.webp", caption: "Portfolio: 220+ photos filtered by category or by client" },
+            { src: "/img/projects/b360/site-quote.webp", caption: "Quote request with choice pills, a stepper and a file drop zone" },
+            { src: "/img/projects/b360/site-contact.webp", caption: "Contact: fits one screen at any window height" },
+            { src: "/img/projects/b360/site-about.webp", caption: "About page with count-up figures" },
+            { src: "/img/projects/b360/home.webp", caption: "Starting point: the Figma mobile prototype" },
         ],
         detailTitle: "Project Overview",
         sections: [
             {
                 title: "The problem",
                 intro:
-                    "B360 has produced vehicle wraps and advertising materials since 2012, but its current WordPress website brings almost no organic traffic: new clients arrive only while the company pays for ads. Services are scattered across the site, so neither visitors nor search engines get a clear picture of what B360 offers.",
+                    "B360 has produced vehicle wraps and advertising materials since 2012, but its WordPress website brought almost no organic traffic: new clients arrived only while the company paid for ads. Services were scattered across the site, so neither visitors nor search engines got a clear picture of what B360 offers.",
             },
             {
                 title: "Goals",
                 items: [
                     { label: "Organic growth:", text: "rank on Google for the services clients actually search for, so the business depends less on paid ads." },
-                    { label: "Clear service structure:", text: "one dedicated page per service, grouped logically, with content that answers real questions." },
+                    { label: "Clear service structure:", text: "one dedicated page per service, with content that answers real questions." },
                     { label: "More quote requests:", text: "make it easy to estimate a price and ask for an offer from any page, especially on mobile." },
                 ],
             },
             {
-                title: "Approach",
+                title: "From prototype to code",
                 items: [
-                    { label: "Information architecture first:", text: "regrouped the offer into clear service categories — full and partial vehicle wraps, stickers and custom lettering, window graphics, indoor and outdoor print — each with its own landing page." },
-                    { label: "SEO-driven content:", text: "every service page has a focused heading structure, benefits, a fleet-branding section and an FAQ written around common customer questions." },
-                    { label: "Next.js rebuild (next phase):", text: "statically generated, fast-loading pages with proper metadata, sitemap and structured data, replacing the WordPress theme." },
+                    { label: "Design:", text: "information architecture and a mobile-first Figma prototype, then iterated directly in code with the client, page by page." },
+                    { label: "Stack:", text: "Next.js App Router with React and TypeScript; every page statically generated, a single server route for the forms, deployed on Vercel." },
+                    { label: "Content as data:", text: "services, FAQs, clients and 220+ portfolio photos live in typed data files, so new content does not touch the layout." },
                 ],
             },
             {
-                title: "Key screens",
+                title: "Brand language in CSS",
                 items: [
-                    { label: "Home:", text: "services, loyal clients, recent work and client reviews." },
-                    { label: "Wrap cost calculator:", text: "pick service, vehicle and film type, select the areas on a vehicle blueprint and get an instant price estimate." },
-                    { label: "Service pages:", text: "full and partial wraps, stickers and window graphics, with benefits, fleet branding and an FAQ." },
-                    { label: "Quote request form:", text: "contact details and project details, with inline validation and file upload for existing artwork." },
-                    { label: "About and menu:", text: "company story, values and a full-screen navigation with custom icons." },
+                    { label: "Peeling sticker:", text: "the signature detail of a vinyl-wrap company, built with two pseudo-elements and animated CSS custom properties (@property): the corner lifts and folds back in 3D on buttons, client stickers and icons." },
+                    { label: "Vinyl-reveal headings:", text: "red blocks sweep over each word like film being applied, with a gloss running over the hero photos." },
+                    { label: "Cut icons:", text: "the client's icon set drawn twice and clipped on a diagonal, red corner and a gap, so it adapts to any background colour." },
                 ],
             },
             {
-                title: "Design decisions",
+                title: "Interaction and UX",
                 items: [
-                    { label: "Conversion first:", text: "a fixed bottom bar keeps the calculator, the phone call and the quote request one tap away on every screen." },
-                    { label: "Brand language:", text: "the red of the B360 logo and a recurring peeled-sticker corner on buttons and badges, echoing the client's product." },
-                ],
-            },
-        ],
-    },
-    {
-        slug: "curiofreak",
-        title: "CurioFreak",
-        tagline:
-            "An AI-powered micro-learning app for curious minds: ask what you want to learn, get a bite-sized lesson, then test yourself with a quick quiz. “Stay weird. Stay curious.”",
-        image: "/img/projects/curiofreak/cover.webp",
-        year: "2026",
-        badge: "Concept · In progress",
-        categories: ["ui-ux"],
-        links: [
-            {
-                label: "Interactive prototype",
-                href: "https://www.figma.com/proto/Oojhokr6X6gTovN6jWp1sc/CurioFreak?node-id=0-1&scaling=scale-down&content-scaling=fixed",
-                kind: "prototype",
-            },
-            { label: "Figma design", href: "https://www.figma.com/design/Oojhokr6X6gTovN6jWp1sc/CurioFreak?node-id=0-1", kind: "prototype" },
-        ],
-        tech: ["Figma", "Branding", "Design System", "Mobile UI", "Interactive Prototyping", "AI-assisted UX"],
-        gallery: [
-            { src: "/img/projects/curiofreak/onboarding.webp", caption: "Onboarding and home: ask anything, trending topics, continue learning" },
-            { src: "/img/projects/curiofreak/ask-ai.webp", caption: "Ask a question and let AI generate a quick lesson" },
-            { src: "/img/projects/curiofreak/quiz.webp", caption: "Bite-sized lesson cards, then a quiz to check what stuck" },
-        ],
-        detailTitle: "Project Overview",
-        sections: [
-            {
-                title: "Overview",
-                intro:
-                    "CurioFreak is my own product concept: a micro-learning app that turns curiosity into short lessons. You type what you want to learn — or let AI surprise you — and get a lesson split into small cards: the basics, why it matters, an everyday example and how it works. A short quiz closes the loop. I started with UI/UX — brand, design system and the full set of screens — and will build the frontend next, taking the project from idea to working app.",
-            },
-            {
-                title: "What I designed",
-                items: [
-                    { label: "Brand identity:", text: "the CurioFreak logo, the “Stay weird. Stay curious.” tagline, hand-drawn accents and a teal, coral and lavender palette that feels playful without being childish." },
-                    { label: "Learning flow:", text: "onboarding, a home screen with free-text search, “Let AI surprise me”, trending topics and continue-learning progress; AI-generated lessons with “Mark as done” on every card; and a step-by-step quiz." },
-                    { label: "Navigation and progress:", text: "a bottom bar for lessons, wishlist and progress, with a friendly AI assistant always one tap away." },
-                    { label: "Design system:", text: "a custom icon set, colour and type styles and reusable components, prepared so the screens translate directly into frontend components." },
+                    { label: "Section snapping:", text: "on desktop each page reads as a sequence of full screens, with a side rail showing where you are; gentle enough to never trap the reader." },
+                    { label: "Integral vs. partial slider:", text: "an accessible range input over the photo, with a diagonal red divider following the handle." },
+                    { label: "Conversion first:", text: "a fixed bottom bar on phones keeps the calculator, the phone call and the quote request one tap away." },
+                    { label: "Fit to the window:", text: "the contact page scales its type and fields with the window height, so form and footer always fit one screen." },
                 ],
             },
             {
-                title: "Next step: frontend",
-                intro:
-                    "Building the app from this design, using the components and styles defined in Figma as the base of the component library — the same design-to-code workflow I use in my day-to-day frontend work.",
-            },
-        ],
-    },
-    {
-        slug: "cbn-agro-tech",
-        title: "Silo Monitoring Platform",
-        tagline:
-            "Frontend Developer at CBN Agro Tech: interfaces and modules for a platform that monitors grain temperature in silos and warehouses and controls ventilation remotely.",
-        image: "/img/projects/cbn/dashboard.webp",
-        year: "2023 – 2024",
-        badge: "Professional work",
-        categories: ["frontend"],
-        links: [],
-        tech: ["JavaScript", "Lit (Web Components)", "Polymer", "REST APIs", "Data visualisation", "Google App Engine", "Agile / Scrum", "JIRA"],
-        gallery: [
-            { src: "/img/projects/cbn/dashboard.webp", caption: "Dashboard: live temperature matrix for every silo and warehouse, colour-coded by threshold" },
-            { src: "/img/projects/cbn/silo-preview.webp", caption: "Silo preview: site layout with stored crop, sensor cables, fans and current temperature and humidity" },
-            { src: "/img/projects/cbn/silo-matrix.webp", caption: "Silo detail, Matrix view: sensor readings per cable and level, with the temperature history chart" },
-            { src: "/img/projects/cbn/silo-chart.webp", caption: "Chart view: per-sensor trends and variation over a selected period" },
-            { src: "/img/projects/cbn/silo-3d.webp", caption: "Silo 3D: the sensor cables inside the grain, with readings in place" },
-            { src: "/img/projects/cbn/warehouse-3d.webp", caption: "Warehouse 3D view with the sensor grid" },
-            { src: "/img/projects/cbn/settings.webp", caption: "Settings: alert thresholds, ventilation autopilot, temperature colour scale and interface options" },
-            { src: "/img/projects/cbn/reports.webp", caption: "Reports: notification preferences and Excel / Word exports" },
-        ],
-        detailTitle: "My Role at CBN Agro Tech",
-        sections: [
-            {
-                title: "Overview",
-                intro:
-                    "CBN Agro Tech builds software for agricultural businesses. Its platform lets farmers and storage operators follow the temperature and humidity of stored grain in real time, sensor by sensor, and run the ventilation remotely or on autopilot to prevent spoilage. I worked in an Agile team of 4 engineers on the frontend. The application requires a client login; the screenshots come from the demo account.",
-            },
-            {
-                title: "What I delivered",
+                title: "Forms, legal and SEO",
                 items: [
-                    { label: "15+ reusable components", text: "built with JavaScript and Lit Web Components and shared across the platform." },
-                    { label: "4 functional modules:", text: "temperature monitoring, remote device management, automated ventilation and reporting tools." },
-                    { label: "Interface improvements:", text: "I reworked the screens shown here — silo preview, dashboard, silo detail (Matrix, Stored, Chart, 3D), settings and reports — for clearer reading of the data and more consistent controls." },
-                    { label: "Data and performance:", text: "integrated server-side sensor data and optimised UI performance and responsiveness." },
-                    { label: "Business modules:", text: "contributed to inventory management, accounting workflow and production monitoring, applying scalable, maintainable code practices." },
-                    { label: "Documentation:", text: "wrote and designed the user help guide (PDF) for the application." },
+                    { label: "Working forms:", text: "quote, contact and calculator requests are sent by a Next.js route through Resend, with attachments, server-side validation and invisible spam traps." },
+                    { label: "GDPR and consumer law:", text: "consent on every form, a privacy policy page and the ANPC dispute-resolution badge required for Romanian businesses." },
+                    { label: "SEO:", text: "per-page metadata, sitemap, LocalBusiness, Service and FAQ structured data, and opening hours for Google." },
+                    { label: "Quality checks:", text: "every change verified with scripted browser screenshots at desktop and phone sizes, including forced dark mode and no-overflow checks." },
                 ],
-            },
-            {
-                title: "Design decisions",
-                items: [
-                    { label: "Read the risk at a glance:", text: "every reading is colour-coded on a configurable scale (green, yellow, orange, red), so hot spots stand out across dozens of sensors." },
-                    { label: "Several views of the same data:", text: "a matrix for exact values, charts for trends and a 3D model to see where each sensor sits in the grain." },
-                    { label: "Configurable by the user:", text: "alert thresholds, the colour scale, ventilation rules tied to dew point and humidity, and a cheaper-electricity autopilot interval." },
-                ],
-            },
-            {
-                title: "How we worked",
-                intro:
-                    "Scrum with JIRA, in close collaboration with technical and business stakeholders to deliver features on time. My background in graphic design helped translate designs into consistent, polished interfaces.",
             },
         ],
     },
