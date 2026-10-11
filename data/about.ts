@@ -20,12 +20,12 @@ export const experience: TimelineEntry[] = [
         ],
     },
     {
-        role: "Full-Stack Development Training & Personal Projects",
-        org: "SDA Academy + Independent",
+        role: "Freelance Full-Stack Developer",
+        org: "Independent projects",
         period: "Nov 2024 – Present",
         points: [
-            "Completed intensive Python Full-Stack programme: Django, Flask, SQL, REST APIs, TDD, algorithms and software design patterns.",
-            "Built and deployed multiple web applications integrating a React frontend with backend APIs — live on GitHub and dianadaraban.netlify.app.",
+            "B360.ro (client project, in progress): redesigning the website of an advertising production company, from Figma prototype to a Next.js site with an interactive vehicle-wrap price calculator, a filterable project gallery and quote forms with email delivery; live preview on Vercel.",
+            "DonEat (personal project): a full-stack marketplace against food waste, with a Django REST API (JWT auth, roles, email notifications) and a React + TypeScript frontend with map search, cart, orders and a vendor dashboard; deployed on Vercel and Render.",
         ],
     },
     {
@@ -62,8 +62,8 @@ export const education: TimelineEntry[] = [
     {
         role: "Python Full-Stack Development Program",
         org: "SDA Academy",
-        period: "2025 – 2026",
-        points: ["Python, OOP, algorithms and data structures, SQL databases, REST APIs, Django / Flask, Git workflows."],
+        period: "Nov 2024 – May 2026",
+        points: ["Intensive programme: Python and OOP, algorithms and data structures, SQL databases, REST APIs, Django and Flask, TDD, software design patterns and Git workflows."],
     },
     {
         role: "Frontend Web Development",
