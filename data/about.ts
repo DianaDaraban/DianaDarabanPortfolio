@@ -62,7 +62,7 @@ export const education: TimelineEntry[] = [
     {
         role: "Python Full-Stack Development Program",
         org: "SDA Academy",
-        period: "Nov 2024 – May 2026",
+        period: "Jun 2025 – May 2026",
         points: ["Intensive programme: Python and OOP, algorithms and data structures, SQL databases, REST APIs, Django and Flask, TDD, software design patterns and Git workflows."],
     },
     {
