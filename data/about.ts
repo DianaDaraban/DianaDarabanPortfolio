@@ -68,13 +68,13 @@ export const education: TimelineEntry[] = [
     {
         role: "Frontend Web Development",
         org: "Școala Informală de IT",
-        period: "2022 – 2023",
+        period: "Aug 2022 – Apr 2023",
         points: ["JavaScript fundamentals, React, HTML5, CSS3, responsive web design."],
     },
     {
         role: "Interior Design degree",
         org: "\"Ion Mincu\" University of Architecture and Urban Planning",
-        period: "2005 – 2011",
+        period: "Oct 2005 – Jul 2011",
         points: ["Training in spatial reasoning, aesthetics and functional-visual design — a strong foundation for UI/UX work."],
     },
 ]
