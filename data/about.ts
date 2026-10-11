@@ -9,6 +9,17 @@ export type TimelineEntry = {
 
 export const experience: TimelineEntry[] = [
     {
+        role: "Automation Testing Trainee",
+        org: "EPAM Systems · EPAM Campus",
+        period: "May 2026 – Present",
+        points: [
+            "Selected for EPAM's specialisation programme in Automated Testing with JavaScript and TypeScript.",
+            "Writing automated end-to-end and integration tests for a wide range of scenarios with Playwright, Cypress and WebdriverIO.",
+            "Structuring test suites with Mocha, Chai and Cucumber (BDD) and applying industry best practices for maintainable, reliable tests.",
+            "Building practical skills through mentor-led sessions and hands-on exercises.",
+        ],
+    },
+    {
         role: "Full-Stack Development Training & Personal Projects",
         org: "SDA Academy + Independent",
         period: "Nov 2024 – Present",
@@ -73,6 +84,7 @@ export const skills: { group: string, items: string[] }[] = [
     { group: "Libraries & Tools", items: ["Redux", "Lit (Web Components)", "AJAX", "REST APIs"] },
     { group: "Backend & Programming", items: ["Python", "Flask", "Django", "Django REST Framework", "OOP", "Data Structures", "Algorithms"] },
     { group: "Databases", items: ["SQL", "Relational database design", "CRUD operations"] },
+    { group: "Testing & QA Automation", items: ["Playwright", "Cypress", "WebdriverIO", "Mocha", "Chai", "Cucumber (BDD)"] },
     { group: "Development Tools", items: ["Git", "GitHub", "Agile", "Scrum", "CI/CD", "JIRA"] },
     { group: "UI / UX & Design", items: ["Figma", "Interactive Prototyping", "Adobe Photoshop", "Illustrator", "InDesign"] },
 ]
