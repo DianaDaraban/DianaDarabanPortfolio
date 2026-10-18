@@ -73,6 +73,7 @@ export const projects: Project[] = [
                 kind: "prototype",
             },
             { label: "Figma design", href: "https://www.figma.com/design/CsyefhK1h4QKKwYpPdkbtW/B360.ro?node-id=4-149", kind: "prototype" },
+            { label: "Source code on GitHub", href: "https://github.com/DianaDaraban/b360-website", kind: "code" },
         ],
         tech: ["Next.js (App Router)", "React", "TypeScript", "CSS Modules", "Resend", "Vercel", "SEO & structured data", "Figma"],
         gallery: [
