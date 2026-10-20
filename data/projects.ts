@@ -66,7 +66,7 @@ export const projects: Project[] = [
         badge: "Client project · Live preview",
         categories: ["frontend", "ui-ux"],
         links: [
-            { label: "Live website", href: "https://b360-two.vercel.app", kind: "website" },
+            { label: "Live website", href: "https://www.b360.ro", kind: "website" },
             {
                 label: "Mobile prototype",
                 href: "https://www.figma.com/proto/CsyefhK1h4QKKwYpPdkbtW/B360.ro?page-id=4%3A148&node-id=4-149&p=f&viewport=216%2C-199%2C0.55&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4%3A149",
